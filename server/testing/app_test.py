@@ -157,6 +157,28 @@ class TestApp:
                 VendorSweet.vendor_id == vendor.id, VendorSweet.sweet_id == sweet.id).first()
             assert query_result.price == price
 
+    def test_400_for_validation_error(self):
+        '''returns a 400 status code and error message if a POST request to /vendor_sweets fails.'''
+        with app.app_context():
+            fake = Faker()
+            sweet = Sweet(name=fake.name())
+            vendor = Vendor(name=fake.name())
+
+            db.session.add(sweet)
+            db.session.add(vendor)
+            db.session.commit()
+
+            response = app.test_client().post(
+                '/vendor_sweets',
+                json={
+                    "price": -1,
+                    "vendor_id": vendor.id,
+                    "sweet_id": sweet.id,
+                }
+            )
+            assert response.status_code == 400
+            assert response.json['errors'] == ["validation errors"]
+
     def test_deletes_vendor_sweet_by_id(self):
         '''deletes restaurant with DELETE request to /restaurants/<int:id>.'''
 
