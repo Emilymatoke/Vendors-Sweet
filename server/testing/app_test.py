@@ -179,8 +179,9 @@ class TestApp:
             assert response.status_code == 400
             assert response.json['errors'] == ["validation errors"]
 
+
     def test_deletes_vendor_sweet_by_id(self):
-        '''deletes restaurant with DELETE request to /restaurants/<int:id>.'''
+        '''deletes VendorSweet with DELETE request to /vendor_sweets/<int:id>.'''
 
         with app.app_context():
             fake = Faker()
@@ -205,7 +206,7 @@ class TestApp:
             assert result is None
 
     def test_returns_404_if_no_vendor_sweet_to_delete(self):
-        '''returns an error message and 404 status code with DELETE request to /restaurants/<int:id> by a non-existent ID.'''
+        '''returns an error message and 404 status code with DELETE request to /vendor_sweets/<int:id> by a non-existent ID.'''
 
         with app.app_context():
             response = app.test_client().delete('/vendor_sweets/0')
