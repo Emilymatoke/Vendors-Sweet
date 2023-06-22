@@ -85,7 +85,7 @@ class TestApp:
                 assert 'vendor_sweets' not in sweet
 
     def test_gets_sweet_by_id(self):
-        '''retrieves one sweet using its ID with GET request to /vendors/<int:id>.'''
+        '''retrieves one sweet using its ID with GET request to /sweets/<int:id>.'''
 
         with app.app_context():
             fake = Faker()
@@ -113,7 +113,7 @@ class TestApp:
             assert response.status_code == 404
 
     def test_creates_sweet_vendor(self):
-        '''creates one sweet_vendor using, price, sweet_id, and a vendor_id with a POST request to /sweet_vendors.'''
+        '''creates one VendorSweet using, price, sweet_id, and a vendor_id with a POST request to /vendor_sweets.'''
 
         with app.app_context():
             fake = Faker()
@@ -181,7 +181,7 @@ class TestApp:
 
 
     def test_deletes_vendor_sweet_by_id(self):
-        '''deletes VendorSweet with DELETE request to /vendor_sweets/<int:id>.'''
+        '''deletes one VendorSweet with DELETE request to /vendor_sweets/<int:id>.'''
 
         with app.app_context():
             fake = Faker()
