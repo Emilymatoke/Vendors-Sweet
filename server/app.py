@@ -67,8 +67,6 @@ def get_sweet(id):
         return jsonify({'error': 'Sweet not found'}), 404
 
 # Route to create a new VendorSweet
-# Route to create a new VendorSweet
-# Route to create a new VendorSweet
 @app.route('/vendor_sweets', methods=['POST'])
 def create_vendor_sweet():
     data = request.json
